@@ -31,7 +31,7 @@ const RELAYER_NOT_AUTHORISED_FOR_WALLET = "BM: must be owner or module";
 const GAS_LESS_THAN_GASLIMIT = "RM: not enough gas provided";
 const WRONG_NUMBER_SIGNATURES = "RM: Wrong number of signatures";
 
-describe("RelayerModule", function () {
+contract("RelayerModule", function (accounts) {
   this.timeout(10000);
 
   const manager = new TestManager();

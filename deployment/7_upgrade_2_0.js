@@ -1,28 +1,27 @@
+/* global artifacts */
 const semver = require("semver");
 const childProcess = require("child_process");
-const MultiSig = require("../build/MultiSigWallet");
-const ModuleRegistry = require("../build/ModuleRegistry");
-const Upgrader = require("../build/SimpleUpgrader");
 const DeployManager = require("../utils/deploy-manager.js");
 const MultisigExecutor = require("../utils/multisigexecutor.js");
 
-const LimitStorage = require("../build/LimitStorage");
-const TokenPriceStorage = require("../build/TokenPriceStorage");
-
-const ApprovedTransfer = require("../build/ApprovedTransfer");
-const CompoundManager = require("../build/CompoundManager");
-const GuardianManager = require("../build/GuardianManager");
-const LockManager = require("../build/LockManager");
-const NftTransfer = require("../build/NftTransfer");
-const RecoveryManager = require("../build/RecoveryManager");
-const TokenExchanger = require("../build/TokenExchanger");
-const MakerV2Manager = require("../build/MakerV2Manager");
-const TransferManager = require("../build/TransferManager");
-const RelayerModule = require("../build/RelayerModule");
-
-const BaseWallet = require("../build/BaseWallet");
-const WalletFactory = require("../build/WalletFactory");
-const ENSManager = require("../build/ArgentENSManager");
+const MultiSig = artifacts.require("MultiSigWallet");
+const ModuleRegistry = artifacts.require("ModuleRegistry");
+const Upgrader = artifacts.require("SimpleUpgrader");
+const LimitStorage = artifacts.require("LimitStorage");
+const TokenPriceStorage = artifacts.require("TokenPriceStorage");
+const ApprovedTransfer = artifacts.require("ApprovedTransfer");
+const CompoundManager = artifacts.require("CompoundManager");
+const GuardianManager = artifacts.require("GuardianManager");
+const LockManager = artifacts.require("LockManager");
+const NftTransfer = artifacts.require("NftTransfer");
+const RecoveryManager = artifacts.require("RecoveryManager");
+const TokenExchanger = artifacts.require("TokenExchanger");
+const MakerV2Manager = artifacts.require("MakerV2Manager");
+const TransferManager = artifacts.require("TransferManager");
+const RelayerModule = artifacts.require("RelayerModule");
+const BaseWallet = artifacts.require("BaseWallet");
+const WalletFactory = artifacts.require("WalletFactory");
+const ENSManager = artifacts.require("ArgentENSManager");
 
 const utils = require("../utils/utilities.js");
 

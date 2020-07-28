@@ -14,6 +14,7 @@ const TestManager = require("../utils/test-manager");
 const GemJoin = artifacts.require("GemJoin");
 const Registry = artifacts.require("ModuleRegistry");
 const MakerV1Manager = require("../build-legacy/v1.6.0/MakerManager");
+
 const MakerV2Manager = artifacts.require("MakerV2Manager");
 const UpgradedMakerV2Manager = artifacts.require("TestUpgradedMakerV2Manager");
 const MakerRegistry = artifacts.require("MakerRegistry");
@@ -28,8 +29,7 @@ const TransferManager = artifacts.require("TransferManager");
 const BadModule = artifacts.require("TestModule");
 const RelayerModule = artifacts.require("RelayerModule");
 
-/* global accounts */
-describe("MakerV2 Vaults", function () {
+contract("MakerV2Loan", function (accounts) {
   this.timeout(100000);
 
   const manager = new TestManager();

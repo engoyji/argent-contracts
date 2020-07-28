@@ -4,6 +4,8 @@ const ethers = require("ethers");
 const {
   keccak256, toUtf8Bytes, formatBytes32String, parseBytes32String,
 } = require("ethers").utils;
+const utils = require("../utils/utilities.js");
+
 const Proxy = artifacts.require("Proxy");
 const BaseWallet = artifacts.require("BaseWallet");
 const OnlyOwnerModule = artifacts.require("TestOnlyOwnerModule");
@@ -20,7 +22,7 @@ const TestManager = require("../utils/test-manager");
 
 const IS_ONLY_OWNER_MODULE = keccak256(toUtf8Bytes("isOnlyOwnerModule()")).slice(0, 10);
 
-describe("SimpleUpgrader", function () {
+contract("SimpleUpgrader", function (accounts) {
   this.timeout(10000);
 
   const manager = new TestManager();

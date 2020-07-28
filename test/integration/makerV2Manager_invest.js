@@ -6,11 +6,13 @@
 // 2. npm run kovan-fork
 // 3. npx etherlime test test/makerV2Manager_invest.js --skip-compilation --network kovan-fork
 
+/* global artifacts */
 const { parseEther } = require("ethers").utils;
 const TestManager = require("../../utils/test-manager");
 const DeployManager = require("../../utils/deploy-manager.js");
 const UniswapFactory = require("../../lib/uniswap/UniswapFactory");
 const UniswapExchange = require("../../lib/uniswap/UniswapExchange");
+
 const ScdMcdMigration = artifacts.require("ScdMcdMigration");
 const Join = artifacts.require("JoinLike");
 const MakerV2Manager = artifacts.require("MakerV2Manager");

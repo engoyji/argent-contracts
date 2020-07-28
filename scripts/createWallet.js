@@ -1,6 +1,7 @@
 // Example Usage:
 // node scripts/createWallet.js --network kovan --ens john --owner 0x10391442e6ca847151372b6c7cbcc1fd06afda86
 
+/* global artifacts */
 const WalletFactory = artifacts.require("WalletFactory");
 const MultiSigWallet = artifacts.require("MultiSigWallet");
 

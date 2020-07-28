@@ -8,7 +8,7 @@ const BaseWallet = artifacts.require("BaseWallet");
 const Module = artifacts.require("TestOnlyOwnerModule");
 const Registry = artifacts.require("ModuleRegistry");
 
-describe("Proxy", function () {
+contract("Proxy", function (accounts) {
   this.timeout(10000);
 
   const owner = accounts[1].signer;

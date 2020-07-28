@@ -6,6 +6,7 @@
 // 2. npm run kovan-fork
 // 3. npx etherlime test test/makerV2Manager_loan.js --skip-compilation --network kovan-fork
 
+/* global artifacts */
 const ethers = require("ethers");
 const TestManager = require("../../utils/test-manager");
 const DeployManager = require("../../utils/deploy-manager.js");

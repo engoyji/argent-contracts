@@ -1,3 +1,5 @@
+/* global artifacts */
+
 const MultiSig = artifacts.require("MultiSigWallet");
 
 const DeployManager = require("../utils/deploy-manager.js");

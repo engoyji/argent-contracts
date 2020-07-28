@@ -1,24 +1,24 @@
 /* eslint max-classes-per-file: ["error", 2] */
-
+/* global artifacts */
 const ethers = require("ethers");
 const Table = require("cli-table2");
 const tinyreq = require("tinyreq");
-const BaseWallet = require("../build/BaseWallet");
-const Proxy = require("../build/Proxy");
-const ModuleRegistry = require("../build/ModuleRegistry");
-const MultiSig = require("../build/MultiSigWallet");
-const WalletFactory = require("../build/WalletFactory");
 
-const GuardianManager = require("../build/GuardianManager");
-const TokenExchanger = require("../build/TokenExchanger");
-const LockManager = require("../build/LockManager");
-const RecoveryManager = require("../build/RecoveryManager");
-const ApprovedTransfer = require("../build/ApprovedTransfer");
-const TransferManager = require("../build/TransferManager");
-const NftTransfer = require("../build/NftTransfer");
-const CompoundManager = require("../build/CompoundManager");
-const MakerV2Manager = require("../build/MakerV2Manager");
-const RelayerModule = require("../build/RelayerModule");
+const BaseWallet = artifacts.require("BaseWallet");
+const Proxy = artifacts.require("Proxy");
+const ModuleRegistry = artifacts.require("ModuleRegistry");
+const MultiSig = artifacts.require("MultiSigWallet");
+const WalletFactory = artifacts.require("WalletFactory");
+const GuardianManager = artifacts.require("GuardianManager");
+const TokenExchanger = artifacts.require("TokenExchanger");
+const LockManager = artifacts.require("LockManager");
+const RecoveryManager = artifacts.require("RecoveryManager");
+const ApprovedTransfer = artifacts.require("ApprovedTransfer");
+const TransferManager = artifacts.require("TransferManager");
+const NftTransfer = artifacts.require("NftTransfer");
+const CompoundManager = artifacts.require("CompoundManager");
+const MakerV2Manager = artifacts.require("MakerV2Manager");
+const RelayerModule = artifacts.require("RelayerModule");
 
 const DeployManager = require("../utils/deploy-manager");
 const TestManager = require("../utils/test-manager");

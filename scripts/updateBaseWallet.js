@@ -1,5 +1,6 @@
 // Usage: ./execute.sh updateBaseWallet.js staging
 
+/* global artifacts */
 const BaseWallet = artifacts.require("BaseWallet");
 const WalletFactory = artifacts.require("WalletFactory");
 const MultiSigWallet = artifacts.require("MultiSigWallet");

@@ -21,7 +21,7 @@ const {
 const WRONG_SIGNATURE_NUMBER_REVERT_MSG = "RM: Wrong number of signatures";
 const INVALID_SIGNATURES_REVERT_MSG = "RM: Invalid signatures";
 
-describe("RecoveryManager", function () {
+contract("RecoveryManager", function (accounts) {
   this.timeout(10000);
 
   const manager = new TestManager(accounts);

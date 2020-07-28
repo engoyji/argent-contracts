@@ -12,7 +12,7 @@ const utilities = require("../utils/utilities.js");
 
 const ZERO_BYTES32 = ethers.constants.HashZero;
 
-describe("ENS contracts", function () {
+contract("ENS contracts", function (accounts) {
   this.timeout(10000);
 
   const manager = new TestManager();

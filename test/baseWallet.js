@@ -1,5 +1,6 @@
 /* global artifacts */
 const ethers = require("ethers");
+
 const Proxy = artifacts.require("Proxy");
 const BaseWallet = artifacts.require("BaseWallet");
 const OldWalletV16 = artifacts.require("../build-legacy/v1.6.0/BaseWallet");
@@ -11,7 +12,7 @@ const GuardianStorage = artifacts.require("GuardianStorage");
 
 const TestManager = require("../utils/test-manager");
 
-describe("BaseWallet", function () {
+contract("BaseWallet", function (accounts) {
   this.timeout(10000);
 
   const manager = new TestManager();
