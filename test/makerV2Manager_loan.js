@@ -33,9 +33,9 @@ contract("MakerV2Loan", (accounts) => {
   const manager = new TestManager();
   const { deployer } = manager;
 
-  const infrastructure = accounts[0].signer;
-  const owner = accounts[1].signer;
-  const owner2 = accounts[2].signer;
+  const infrastructure = accounts[0];
+  const owner = accounts[1];
+  const owner2 = accounts[2];
 
   let sai;
   let dai;
@@ -129,7 +129,7 @@ contract("MakerV2Loan", (accounts) => {
     const proxy = await deployer.deploy(Proxy, {}, walletImplementation.contractAddress);
     wallet = deployer.wrapDeployedContract(BaseWallet, proxy.contractAddress);
 
-    await wallet.init(owner.address,
+    await wallet.init(owner,
       [
         makerV1.contractAddress,
         makerV2.contractAddress,
@@ -298,7 +298,7 @@ contract("MakerV2Loan", (accounts) => {
       const proxy = await deployer.deploy(Proxy, {}, walletImplementation.contractAddress);
       const wallet2 = deployer.wrapDeployedContract(BaseWallet, proxy.contractAddress);
 
-      await wallet2.init(owner2.address, [makerV2.contractAddress]);
+      await wallet2.init(owner2, [makerV2.contractAddress]);
       await assert.revertWith(
         makerV2.from(owner2).addCollateral(wallet2.contractAddress, loanId, ETH_TOKEN, parseEther("0.010")),
         "MV2: unauthorized loanId",
@@ -332,7 +332,7 @@ contract("MakerV2Loan", (accounts) => {
       const proxy = await deployer.deploy(Proxy, {}, walletImplementation.contractAddress);
       const wallet2 = deployer.wrapDeployedContract(BaseWallet, proxy.contractAddress);
 
-      await wallet2.init(owner2.address, [makerV2.contractAddress]);
+      await wallet2.init(owner2, [makerV2.contractAddress]);
       await assert.revertWith(
         makerV2.from(owner2).removeCollateral(wallet2.contractAddress, loanId, ETH_TOKEN, parseEther("0.010")),
         "MV2: unauthorized loanId",
@@ -398,7 +398,7 @@ contract("MakerV2Loan", (accounts) => {
       const proxy = await deployer.deploy(Proxy, {}, walletImplementation.contractAddress);
       const wallet2 = deployer.wrapDeployedContract(BaseWallet, proxy.contractAddress);
 
-      await wallet2.init(owner2.address, [makerV2.contractAddress]);
+      await wallet2.init(owner2, [makerV2.contractAddress]);
       await assert.revertWith(
         makerV2.from(owner2).addDebt(wallet2.contractAddress, loanId, ETH_TOKEN, parseEther("0.010")),
         "MV2: unauthorized loanId",
@@ -413,7 +413,7 @@ contract("MakerV2Loan", (accounts) => {
     const loanId = await testOpenLoan({ collateralAmount, daiAmount, relayed });
     if (!useDai) {
       // move the borrowed DAI from the wallet to the owner
-      await transferManager.from(owner).transferToken(walletAddress, dai.contractAddress, owner.address, daiAmount, HashZero, { gasLimit: 3000000 });
+      await transferManager.from(owner).transferToken(walletAddress, dai.contractAddress, owner, daiAmount, HashZero, { gasLimit: 3000000 });
       // give some ETH to the wallet to be used for repayment
       await owner.sendTransaction({ to: walletAddress, value: collateralAmount });
     }
@@ -463,7 +463,7 @@ contract("MakerV2Loan", (accounts) => {
       const proxy = await deployer.deploy(Proxy, {}, walletImplementation.contractAddress);
       const wallet2 = deployer.wrapDeployedContract(BaseWallet, proxy.contractAddress);
 
-      await wallet2.init(owner2.address, [makerV2.contractAddress]);
+      await wallet2.init(owner2, [makerV2.contractAddress]);
       await assert.revertWith(
         makerV2.from(owner2).removeDebt(wallet2.contractAddress, loanId, ETH_TOKEN, parseEther("0.010")),
         "MV2: unauthorized loanId",
@@ -478,7 +478,7 @@ contract("MakerV2Loan", (accounts) => {
     await owner.sendTransaction({ to: walletAddress, value: collateralAmount.mul(2) });
     if (!useDai) {
       // move the borrowed DAI from the wallet to the owner
-      await transferManager.from(owner).transferToken(walletAddress, dai.contractAddress, owner.address, daiAmount, HashZero, { gasLimit: 3000000 });
+      await transferManager.from(owner).transferToken(walletAddress, dai.contractAddress, owner, daiAmount, HashZero, { gasLimit: 3000000 });
     }
     await manager.increaseTime(3); // wait 3 seconds
     const beforeDAI = await dai.balanceOf(wallet.contractAddress);
@@ -521,7 +521,7 @@ contract("MakerV2Loan", (accounts) => {
       const proxy = await deployer.deploy(Proxy, {}, walletImplementation.contractAddress);
       const wallet2 = deployer.wrapDeployedContract(BaseWallet, proxy.contractAddress);
 
-      await wallet2.init(owner2.address, [makerV2.contractAddress]);
+      await wallet2.init(owner2, [makerV2.contractAddress]);
       await assert.revertWith(
         makerV2.from(owner2).closeLoan(wallet2.contractAddress, loanId),
         "MV2: unauthorized loanId",
@@ -576,7 +576,7 @@ contract("MakerV2Loan", (accounts) => {
     async function testAcquireVault({ relayed }) {
       // Create the vault with `owner` as owner
       const { ilk } = await makerRegistry.collaterals(weth.contractAddress);
-      let txR = await (await cdpManager.from(owner).open(ilk, owner.address)).wait();
+      let txR = await (await cdpManager.from(owner).open(ilk, owner)).wait();
       const vaultId = txR.events.find((e) => e.event === "NewCdp").args.cdp;
       // Transfer the vault to the wallet
       await cdpManager.from(owner).give(vaultId, walletAddress);
@@ -613,7 +613,7 @@ contract("MakerV2Loan", (accounts) => {
     it("should not transfer a vault that is not owned by the wallet", async () => {
       // Create the vault with `owner` as owner
       const { ilk } = await makerRegistry.collaterals(weth.contractAddress);
-      const txR = await (await cdpManager.from(owner).open(ilk, owner.address)).wait();
+      const txR = await (await cdpManager.from(owner).open(ilk, owner)).wait();
       const vaultId = txR.events.find((e) => e.event === "NewCdp").args.cdp;
       const loanId = bigNumToBytes32(vaultId);
       // We are NOT transferring the vault from the owner to the wallet
@@ -625,10 +625,10 @@ contract("MakerV2Loan", (accounts) => {
     it("should not transfer a vault that is not given to the module", async () => {
       // Deploy a fake wallet
       const fakeWallet = await deployer.deploy(FakeWallet, {}, false, AddressZero, 0, "0x00");
-      await fakeWallet.init(owner.address, [makerV2.contractAddress]);
+      await fakeWallet.init(owner, [makerV2.contractAddress]);
       // Create the vault with `owner` as owner
       const { ilk } = await makerRegistry.collaterals(weth.contractAddress);
-      const txR = await (await cdpManager.from(owner).open(ilk, owner.address)).wait();
+      const txR = await (await cdpManager.from(owner).open(ilk, owner)).wait();
       const vaultId = txR.events.find((e) => e.event === "NewCdp").args.cdp;
       const loanId = bigNumToBytes32(vaultId);
       // Transfer the vault to the fake wallet
@@ -654,10 +654,10 @@ contract("MakerV2Loan", (accounts) => {
       // Deploy a fake wallet capable of reentrancy
       const acquireLoanCallData = makerV2.contract.interface.functions.acquireLoan.encode([AddressZero, bigNumToBytes32(ethers.BigNumber.from(0))]);
       const fakeWallet = await deployer.deploy(FakeWallet, {}, true, makerV2.contractAddress, 0, acquireLoanCallData);
-      await fakeWallet.init(owner.address, [makerV2.contractAddress]);
+      await fakeWallet.init(owner, [makerV2.contractAddress]);
       // Create the vault with `owner` as owner
       const { ilk } = await makerRegistry.collaterals(weth.contractAddress);
-      const txR = await (await cdpManager.from(owner).open(ilk, owner.address)).wait();
+      const txR = await (await cdpManager.from(owner).open(ilk, owner)).wait();
       const vaultId = txR.events.find((e) => e.event === "NewCdp").args.cdp;
       const loanId = bigNumToBytes32(vaultId);
       // Transfer the vault to the fake wallet

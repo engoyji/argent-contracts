@@ -24,7 +24,7 @@ const WETH = artifacts.require("WETH9");
 const ModuleRegistry = artifacts.require("ModuleRegistry");
 const Proxy = artifacts.require("Proxy");
 const BaseWallet = artifacts.require("BaseWallet");
-const OldWallet = artifacts.require("../build-legacy/v1.3.0/BaseWallet");
+const OldWallet = require("../build-legacy/v1.3.0/BaseWallet");
 const GuardianStorage = artifacts.require("GuardianStorage");
 const TokenExchanger = artifacts.require("TokenExchanger");
 const RelayerModule = artifacts.require("RelayerModule");
@@ -47,8 +47,8 @@ const TOKEN_B_RATE = parseEther("0.03");
 
 contract("TokenExchanger", (accounts) => {
   const manager = new TestManager();
-  const infrastructure = accounts[0].signer;
-  const owner = accounts[1].signer;
+  const infrastructure = accounts[0];
+  const owner = accounts[1];
   let deployer;
 
   let registry;
@@ -81,8 +81,8 @@ contract("TokenExchanger", (accounts) => {
     manager.setRelayerModule(relayerModule);
 
     // Deploy test tokens
-    tokenA = await deployer.deploy(ERC20, {}, [infrastructure.address], parseEther("1000"), DECIMALS);
-    tokenB = await deployer.deploy(ERC20, {}, [infrastructure.address], parseEther("1000"), DECIMALS);
+    tokenA = await deployer.deploy(ERC20, {}, [infrastructure], parseEther("1000"), DECIMALS);
+    tokenB = await deployer.deploy(ERC20, {}, [infrastructure], parseEther("1000"), DECIMALS);
 
     // Deploy and fund Kyber
     kyberNetwork = await deployer.deploy(KyberNetwork);
@@ -106,7 +106,7 @@ contract("TokenExchanger", (accounts) => {
       parseEther("600"),
       1,
       1,
-      infrastructure.address,
+      infrastructure,
       timestamp + 300,
     );
 
@@ -118,12 +118,12 @@ contract("TokenExchanger", (accounts) => {
       AugustusSwapper,
       {},
       whitelist.contractAddress,
-      infrastructure.address,
+      infrastructure,
       partnerRegistry.contractAddress,
-      infrastructure.address,
-      infrastructure.address,
+      infrastructure,
+      infrastructure,
     );
-    kyberAdapter = await deployer.deploy(Kyber, {}, infrastructure.address);
+    kyberAdapter = await deployer.deploy(Kyber, {}, infrastructure);
     uniswapV2Adapter = await deployer.deploy(UniswapV2, {}, weth.contractAddress);
     await whitelist.addWhitelisted(kyberAdapter.contractAddress);
     await whitelist.addWhitelisted(uniswapV2Adapter.contractAddress);
@@ -163,7 +163,7 @@ contract("TokenExchanger", (accounts) => {
     // create wallet
     const proxy = await deployer.deploy(Proxy, {}, walletImplementation.contractAddress);
     wallet = deployer.wrapDeployedContract(BaseWallet, proxy.contractAddress);
-    await wallet.init(owner.address, [exchanger.contractAddress, transferManager.contractAddress, relayerModule.contractAddress]);
+    await wallet.init(owner, [exchanger.contractAddress, transferManager.contractAddress, relayerModule.contractAddress]);
 
     // fund wallet
     await infrastructure.sendTransaction({ to: wallet.contractAddress, value: parseEther("0.1") });
@@ -360,7 +360,7 @@ contract("TokenExchanger", (accounts) => {
       const oldWalletImplementation = await deployer.deploy(OldWallet);
       const proxy = await deployer.deploy(Proxy, {}, oldWalletImplementation.contractAddress);
       const oldWallet = deployer.wrapDeployedContract(OldWallet, proxy.contractAddress);
-      await oldWallet.init(owner.address, [exchanger.contractAddress]);
+      await oldWallet.init(owner, [exchanger.contractAddress]);
       // fund wallet
       await infrastructure.sendTransaction({ to: oldWallet.contractAddress, value: parseEther("0.1") });
       // call sell/buy

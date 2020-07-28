@@ -31,10 +31,10 @@ const TestManager = require("../utils/test-manager");
 contract("Invest Manager with Compound", (accounts) => {
   const manager = new TestManager();
 
-  const infrastructure = accounts[0].signer;
-  const owner = accounts[1].signer;
-  const liquidityProvider = accounts[2].signer;
-  const borrower = accounts[3].signer;
+  const infrastructure = accounts[0];
+  const owner = accounts[1];
+  const liquidityProvider = accounts[2];
+  const borrower = accounts[3];
 
   let deployer;
   let wallet;
@@ -78,7 +78,7 @@ contract("Invest Manager with Compound", (accounts) => {
     );
 
     // deploy token
-    token = await deployer.deploy(ERC20, {}, [infrastructure.address, liquidityProvider.address, borrower.address], 10000000, 18);
+    token = await deployer.deploy(ERC20, {}, [infrastructure, liquidityProvider, borrower], 10000000, 18);
     // deploy CToken
     cToken = await deployer.deploy(
       CErc20,
@@ -137,7 +137,7 @@ contract("Invest Manager with Compound", (accounts) => {
   beforeEach(async () => {
     const proxy = await deployer.deploy(Proxy, {}, walletImplementation.contractAddress);
     wallet = deployer.wrapDeployedContract(BaseWallet, proxy.contractAddress);
-    await wallet.init(owner.address, [investManager.contractAddress, relayerModule.contractAddress]);
+    await wallet.init(owner, [investManager.contractAddress, relayerModule.contractAddress]);
   });
 
   describe("Environment", () => {

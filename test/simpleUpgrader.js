@@ -25,7 +25,7 @@ const IS_ONLY_OWNER_MODULE = keccak256(toUtf8Bytes("isOnlyOwnerModule()")).slice
 contract("SimpleUpgrader", (accounts) => {
   const manager = new TestManager();
 
-  const owner = accounts[1].signer;
+  const owner = accounts[1];
   let deployer;
   let registry;
   let guardianStorage;
@@ -75,7 +75,7 @@ contract("SimpleUpgrader", (accounts) => {
       await registry.registerModule(initialModule.contractAddress, formatBytes32String("initial"));
       await registry.registerModule(moduleToAdd.contractAddress, formatBytes32String("added"));
 
-      await wallet.init(owner.address, [initialModule.contractAddress]);
+      await wallet.init(owner, [initialModule.contractAddress]);
       let isAuthorised = await wallet.authorised(initialModule.contractAddress);
       assert.equal(isAuthorised, true, "initial module should be authorised");
       // add module to wallet
@@ -92,7 +92,7 @@ contract("SimpleUpgrader", (accounts) => {
       // register initial module only
       await registry.registerModule(initialModule.contractAddress, formatBytes32String("initial"));
 
-      await wallet.init(owner.address, [initialModule.contractAddress]);
+      await wallet.init(owner, [initialModule.contractAddress]);
       let isAuthorised = await wallet.authorised(initialModule.contractAddress);
       assert.equal(isAuthorised, true, "initial module should be authorised");
       // try (and fail) to add moduleToAdd to wallet
@@ -107,7 +107,7 @@ contract("SimpleUpgrader", (accounts) => {
       // register module V1
       await registry.registerModule(moduleV1.contractAddress, formatBytes32String("V1"));
 
-      await wallet.init(owner.address, [moduleV1.contractAddress]);
+      await wallet.init(owner, [moduleV1.contractAddress]);
       // create module V2
       const moduleV2 = await deployer.deploy(Module, {}, registry.contractAddress, guardianStorage.contractAddress, false, 0);
       // create upgrader
@@ -147,7 +147,7 @@ contract("SimpleUpgrader", (accounts) => {
       // create wallet with module V1 and relayer module
       const proxy = await deployer.deploy(Proxy, {}, walletImplementation.contractAddress);
       wallet = deployer.wrapDeployedContract(BaseWallet, proxy.contractAddress);
-      await wallet.init(owner.address, [moduleV1.contractAddress, relayerModule.contractAddress]);
+      await wallet.init(owner, [moduleV1.contractAddress, relayerModule.contractAddress]);
       // create module V2
       const moduleV2 = await deployer.deploy(Module, {}, registry.contractAddress, guardianStorage.contractAddress, false, 0);
       // register module V2
@@ -251,8 +251,8 @@ contract("SimpleUpgrader", (accounts) => {
     let lockManager;
     let recoveryManager;
     let moduleV2;
-    const guardian = accounts[2].signer;
-    const newowner = accounts[3].signer;
+    const guardian = accounts[2];
+    const newowner = accounts[3];
 
     beforeEach(async () => {
       // Setup the modules for wallet
@@ -261,7 +261,7 @@ contract("SimpleUpgrader", (accounts) => {
       recoveryManager = await deployer.deploy(RecoveryManager, {}, registry.contractAddress, guardianStorage.contractAddress, 36, 24 * 5);
 
       // Setup the wallet with the initial set of modules
-      await wallet.init(owner.address,
+      await wallet.init(owner,
         [
           relayerModule.contractAddress,
           guardianManager.contractAddress,

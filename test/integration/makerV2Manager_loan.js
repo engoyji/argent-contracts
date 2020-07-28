@@ -13,13 +13,13 @@ const DeployManager = require("../../utils/deploy-manager.js");
 const MultisigExecutor = require("../../utils/multisigexecutor.js");
 
 const MultiSig = artifacts.require("MultiSigWallet");
-const UniswapFactory = artifacts.require("../../lib/uniswap/UniswapFactory");
-const UniswapExchange = artifacts.require("../../lib/uniswap/UniswapExchange");
+const UniswapFactory = require("../../lib/uniswap/UniswapFactory");
+const UniswapExchange = require("../../lib/uniswap/UniswapExchange");
 const Join = artifacts.require("JoinLike");
 const Vat = artifacts.require("VatLike");
 const FaucetUser = artifacts.require("FaucetUser");
 const CdpManager = artifacts.require("TestCdpManager");
-const MakerV1Manager = artifacts.require("../../build-legacy/v1.6.0/MakerManager");
+const MakerV1Manager = require("../../build-legacy/v1.6.0/MakerManager");
 const MakerV2Manager = artifacts.require("MakerV2Manager");
 const UpgradedMakerV2Manager = artifacts.require("TestUpgradedMakerV2Manager");
 const TransferManager = artifacts.require("TransferManager");
@@ -116,7 +116,7 @@ describe("Test MakerV2 Vaults", () => {
   beforeEach(async () => {
     lastLoanId = null;
     wallet = await deployer.deploy(Wallet);
-    await wallet.verboseWaitForTransaction(await wallet.init(owner.address, [
+    await wallet.verboseWaitForTransaction(await wallet.init(owner, [
       config.modules.MakerManager, // MakerV1
       makerV2.contractAddress,
       transferManager.contractAddress,
@@ -132,16 +132,16 @@ describe("Test MakerV2 Vaults", () => {
 
     const ethBalance = await deployer.provider.getBalance(walletAddress);
     const daiBalance = await daiToken.balanceOf(walletAddress);
-    await (await transferManager.transferToken(walletAddress, ETH_TOKEN, owner.address, ethBalance, HashZero, { gasLimit: 2000000 })).wait();
+    await (await transferManager.transferToken(walletAddress, ETH_TOKEN, owner, ethBalance, HashZero, { gasLimit: 2000000 })).wait();
     await (await transferManager.transferToken(
       walletAddress,
       daiToken.contractAddress,
-      owner.address,
+      owner,
       daiBalance,
       HashZero,
       { gasLimit: 2000000 },
     )).wait();
-    const afterDAI = await daiToken.balanceOf(owner.address);
+    const afterDAI = await daiToken.balanceOf(owner);
     if (afterDAI.gt(0)) {
       await (await daiToken.approve(daiExchange.contractAddress, afterDAI)).wait();
       const currentBlock = await testManager.getCurrentBlock();
@@ -363,7 +363,7 @@ describe("Test MakerV2 Vaults", () => {
       if (!useDai) {
         // move the borrowed DAI from the wallet to the owner
         await (await transferManager.transferToken(
-          walletAddress, daiToken.contractAddress, owner.address, daiAmount, HashZero, { gasLimit: 3000000 },
+          walletAddress, daiToken.contractAddress, owner, daiAmount, HashZero, { gasLimit: 3000000 },
         )).wait();
         // give some ETH to the wallet to be used for repayment
         await (await owner.sendTransaction({ to: walletAddress, value: collateralAmount })).wait();
@@ -407,7 +407,7 @@ describe("Test MakerV2 Vaults", () => {
       if (!useDai) {
         // move the borrowed DAI from the wallet to the owner
         await (await transferManager.transferToken(
-          walletAddress, daiToken.contractAddress, owner.address, daiAmount, HashZero, { gasLimit: 3000000 },
+          walletAddress, daiToken.contractAddress, owner, daiAmount, HashZero, { gasLimit: 3000000 },
         )).wait();
       }
       await testManager.increaseTime(3); // wait 3 seconds
@@ -448,7 +448,7 @@ describe("Test MakerV2 Vaults", () => {
     });
 
     async function topupWalletToken(token, amount) {
-      while ((await token.balanceOf(owner.address)).lt(amount)) {
+      while ((await token.balanceOf(owner)).lt(amount)) {
         await deployer.deploy(
           FaucetUser,
           {},
@@ -476,7 +476,7 @@ describe("Test MakerV2 Vaults", () => {
         // Create the vault with `owner` as owner
         const cdpManager = await deployer.wrapDeployedContract(CdpManager, await migration.cdpManager());
         const { ilk } = await makerRegistry.collaterals(wethToken.contractAddress);
-        let txR = await (await cdpManager.open(ilk, owner.address)).wait();
+        let txR = await (await cdpManager.open(ilk, owner)).wait();
         const vaultId = txR.events.find((e) => e.event === "NewCdp").args.cdp;
         // Transfer the vault to the wallet
         await (await cdpManager.give(vaultId, walletAddress)).wait();

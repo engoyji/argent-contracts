@@ -20,8 +20,8 @@ contract("MakerV2Invest", (accounts) => {
   const manager = new TestManager();
   const { deployer } = manager;
 
-  const infrastructure = accounts[0].signer;
-  const owner = accounts[1].signer;
+  const infrastructure = accounts[0];
+  const owner = accounts[1];
 
   let wallet;
   let walletImplementation;
@@ -75,7 +75,7 @@ contract("MakerV2Invest", (accounts) => {
     const proxy = await deployer.deploy(Proxy, {}, walletImplementation.contractAddress);
     wallet = deployer.wrapDeployedContract(BaseWallet, proxy.contractAddress);
 
-    await wallet.init(owner.address, [makerV2.contractAddress, relayerModule.contractAddress]);
+    await wallet.init(owner, [makerV2.contractAddress, relayerModule.contractAddress]);
     await sai["mint(address,uint256)"](wallet.contractAddress, DAI_SENT.mul(20));
     await dai["mint(address,uint256)"](wallet.contractAddress, DAI_SENT.mul(20));
   });

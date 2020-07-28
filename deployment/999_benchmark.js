@@ -102,7 +102,7 @@ class Benchmark {
     this.accounts = this.signers.map((s) => s._address);
     this.config = config;
 
-    this.testManager = new TestManager(this.accounts);
+    this.testManager = new TestManager();
 
     this.GuardianManagerWrapper = await this.deployer.wrapDeployedContract(GuardianManager, config.modules.GuardianManager);
     this.LockManagerWrapper = await this.deployer.wrapDeployedContract(LockManager, config.modules.LockManager);

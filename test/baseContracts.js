@@ -8,10 +8,10 @@ const TestManager = require("../utils/test-manager");
 contract("Managed and Owned", (accounts) => {
   const manager = new TestManager();
 
-  const infrastructure = accounts[0].signer;
-  const manager1 = accounts[1].signer;
-  const manager2 = accounts[2].signer;
-  const nonOwner = accounts[3].signer;
+  const infrastructure = accounts[0];
+  const manager1 = accounts[1];
+  const manager2 = accounts[2];
+  const nonOwner = accounts[3];
 
   let deployer;
   let managed;
@@ -27,14 +27,14 @@ contract("Managed and Owned", (accounts) => {
   describe("Owned contract logic", () => {
     it("should set owner to caller", async () => {
       const owner = await managed.owner();
-      assert.equal(owner, infrastructure.address);
+      assert.equal(owner, infrastructure);
     });
 
     it("should be able to change owner", async () => {
-      const newOwner = accounts[1].signer;
-      await managed.changeOwner(newOwner.address);
+      const newOwner = accounts[1];
+      await managed.changeOwner(newOwner);
       const owner = await managed.owner();
-      assert.equal(owner, newOwner.address);
+      assert.equal(owner, newOwner);
     });
 
     it("should not be able to change owner to zero address", async () => {
