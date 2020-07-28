@@ -1,16 +1,16 @@
-/* global accounts, utils */
+/* global artifacts */
 const ethers = require("ethers");
 
-const BaseWallet = require("../build/BaseWallet");
-const Module = require("../build/TestOnlyOwnerModule");
-const ModuleRegistry = require("../build/ModuleRegistry");
-const ENSRegistry = require("../build/ENSRegistry");
-const ENSRegistryWithFallback = require("../build/ENSRegistryWithFallback");
-const ENSManager = require("../build/ArgentENSManager");
-const ENSResolver = require("../build/ArgentENSResolver");
-const ENSReverseRegistrar = require("../build/ReverseRegistrar");
-const Factory = require("../build/WalletFactory");
-const GuardianStorage = require("../build/GuardianStorage");
+const BaseWallet = artifacts.require("BaseWallet");
+const Module = artifacts.require("TestOnlyOwnerModule");
+const ModuleRegistry = artifacts.require("ModuleRegistry");
+const ENSRegistry = artifacts.require("ENSRegistry");
+const ENSRegistryWithFallback = artifacts.require("ENSRegistryWithFallback");
+const ENSManager = artifacts.require("ArgentENSManager");
+const ENSResolver = artifacts.require("ArgentENSResolver");
+const ENSReverseRegistrar = artifacts.require("ReverseRegistrar");
+const Factory = artifacts.require("WalletFactory");
+const GuardianStorage = artifacts.require("GuardianStorage");
 
 const TestManager = require("../utils/test-manager");
 const utilities = require("../utils/utilities.js");

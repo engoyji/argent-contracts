@@ -1,4 +1,5 @@
-/* global accounts, utils */
+/* global artifacts */
+
 const ethers = require("ethers");
 const chai = require("chai");
 const BN = require("bn.js");
@@ -7,20 +8,20 @@ const bnChai = require("bn-chai");
 const { expect } = chai;
 chai.use(bnChai(BN));
 
-const Proxy = require("../build/Proxy");
-const BaseWallet = require("../build/BaseWallet");
-const Registry = require("../build/ModuleRegistry");
-const TransferStorage = require("../build/TransferStorage");
-const GuardianStorage = require("../build/GuardianStorage");
-const LimitStorage = require("../build/LimitStorage");
-const TokenPriceStorage = require("../build/TokenPriceStorage");
-const RelayerModule = require("../build/RelayerModule");
-const TransferModule = require("../build/TransferManager");
-const LegacyTransferManager = require("../build-legacy/v1.6.0/TransferManager");
-const LegacyTokenPriceProvider = require("../build-legacy/v1.6.0/TokenPriceProvider");
-const ERC20 = require("../build/TestERC20");
-const WETH = require("../build/WETH9");
-const TestContract = require("../build/TestContract");
+const Proxy = artifacts.require("Proxy");
+const BaseWallet = artifacts.require("BaseWallet");
+const Registry = artifacts.require("ModuleRegistry");
+const TransferStorage = artifacts.require("TransferStorage");
+const GuardianStorage = artifacts.require("GuardianStorage");
+const LimitStorage = artifacts.require("LimitStorage");
+const TokenPriceStorage = artifacts.require("TokenPriceStorage");
+const RelayerModule = artifacts.require("RelayerModule");
+const TransferModule = artifacts.require("TransferManager");
+const LegacyTransferManager = artifacts.require("../build-legacy/v1.6.0/TransferManager");
+const LegacyTokenPriceProvider = artifacts.require("../build-legacy/v1.6.0/TokenPriceProvider");
+const ERC20 = artifacts.require("TestERC20");
+const WETH = artifacts.require("WETH9");
+const TestContract = artifacts.require("TestContract");
 
 const { ETH_TOKEN } = require("../utils/utilities.js");
 
@@ -33,7 +34,7 @@ const ACTION_TRANSFER = 0;
 
 const TestManager = require("../utils/test-manager");
 
-describe("TransferManager", function () {
+describe.only("TransferManager", function () {
   this.timeout(10000);
 
   const manager = new TestManager();

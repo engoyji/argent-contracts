@@ -11,12 +11,12 @@ const TestManager = require("../../utils/test-manager");
 const DeployManager = require("../../utils/deploy-manager.js");
 const UniswapFactory = require("../../lib/uniswap/UniswapFactory");
 const UniswapExchange = require("../../lib/uniswap/UniswapExchange");
-const ScdMcdMigration = require("../../build/ScdMcdMigration");
-const Join = require("../../build/JoinLike");
-const MakerV2Manager = require("../../build/MakerV2Manager");
-const MakerRegistry = require("../../build/MakerRegistry");
-const Wallet = require("../../build/BaseWallet");
-const DSToken = require("../../build/DSToken");
+const ScdMcdMigration = artifacts.require("ScdMcdMigration");
+const Join = artifacts.require("JoinLike");
+const MakerV2Manager = artifacts.require("MakerV2Manager");
+const MakerRegistry = artifacts.require("MakerRegistry");
+const Wallet = artifacts.require("BaseWallet");
+const DSToken = artifacts.require("DSToken");
 
 const DEFAULT_NETWORK = "kovan"; // a bug in kovan-fork makes some tests fail => use kovan
 const SENT_AMOUNT = parseEther("0.00000001");

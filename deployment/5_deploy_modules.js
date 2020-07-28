@@ -1,7 +1,7 @@
 const childProcess = require("child_process");
+
 const GuardianStorage = require("../build-legacy/v1.6.0/GuardianStorage");
 const TransferStorage = require("../build-legacy/v1.6.0/TransferStorage");
-
 const GuardianManager = require("../build-legacy/v1.6.0/GuardianManager");
 const TokenExchanger = require("../build-legacy/v1.6.0/TokenExchanger");
 const LockManager = require("../build-legacy/v1.6.0/LockManager");

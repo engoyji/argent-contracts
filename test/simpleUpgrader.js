@@ -1,20 +1,21 @@
+/* global artifacts */
+
 const ethers = require("ethers");
-/* global accounts, utils */
 const {
   keccak256, toUtf8Bytes, formatBytes32String, parseBytes32String,
 } = require("ethers").utils;
-const Proxy = require("../build/Proxy");
-const BaseWallet = require("../build/BaseWallet");
-const OnlyOwnerModule = require("../build/TestOnlyOwnerModule");
-const Module = require("../build/TestModule");
-const SimpleUpgrader = require("../build/SimpleUpgrader");
-const GuardianManager = require("../build/GuardianManager");
-const LockManager = require("../build/LockManager");
-const GuardianStorage = require("../build/GuardianStorage");
-const Registry = require("../build/ModuleRegistry");
-const RecoveryManager = require("../build/RecoveryManager");
+const Proxy = artifacts.require("Proxy");
+const BaseWallet = artifacts.require("BaseWallet");
+const OnlyOwnerModule = artifacts.require("TestOnlyOwnerModule");
+const Module = artifacts.require("TestModule");
+const SimpleUpgrader = artifacts.require("SimpleUpgrader");
+const GuardianManager = artifacts.require("GuardianManager");
+const LockManager = artifacts.require("LockManager");
+const GuardianStorage = artifacts.require("GuardianStorage");
+const Registry = artifacts.require("ModuleRegistry");
+const RecoveryManager = artifacts.require("RecoveryManager");
 
-const RelayerModule = require("../build/RelayerModule");
+const RelayerModule = artifacts.require("RelayerModule");
 const TestManager = require("../utils/test-manager");
 
 const IS_ONLY_OWNER_MODULE = keccak256(toUtf8Bytes("isOnlyOwnerModule()")).slice(0, 10);

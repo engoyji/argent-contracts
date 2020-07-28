@@ -1,14 +1,16 @@
-const BaseWallet = require("../build/BaseWallet");
-const ModuleRegistry = require("../build/ModuleRegistry");
-const CompoundRegistry = require("../build/CompoundRegistry");
-const MultiSig = require("../build/MultiSigWallet");
-const ENS = require("../build/ENSRegistryWithFallback");
-const ENSManager = require("../build/ArgentENSManager");
-const ENSResolver = require("../build/ArgentENSResolver");
+/* global artifacts */
+
+const BaseWallet = artifacts.require("BaseWallet");
+const ModuleRegistry = artifacts.require("ModuleRegistry");
+const CompoundRegistry = artifacts.require("CompoundRegistry");
+const MultiSig = artifacts.require("MultiSigWallet");
+const ENS = artifacts.require("ENSRegistryWithFallback");
+const ENSManager = artifacts.require("ArgentENSManager");
+const ENSResolver = artifacts.require("ArgentENSResolver");
 const WalletFactory = require("../build-legacy/v1.6.0/WalletFactory");
 const TokenPriceProvider = require("../build-legacy/v1.6.0/TokenPriceProvider");
-const MakerRegistry = require("../build/MakerRegistry");
-const ScdMcdMigration = require("../build/ScdMcdMigration");
+const MakerRegistry = artifacts.require("MakerRegistry");
+const ScdMcdMigration = artifacts.require("ScdMcdMigration");
 
 const utils = require("../utils/utilities.js");
 

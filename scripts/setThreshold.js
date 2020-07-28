@@ -1,4 +1,4 @@
-const MultiSig = require("../build/MultiSigWallet");
+const MultiSig = artifacts.require("MultiSigWallet");
 
 const DeployManager = require("../utils/deploy-manager.js");
 const MultisigExecutor = require("../utils/multisigexecutor.js");

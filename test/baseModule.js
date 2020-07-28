@@ -1,11 +1,11 @@
-/* global accounts */
+/* global artifacts */
 require("ethers");
 
-const Registry = require("../build/ModuleRegistry");
-const GuardianStorage = require("../build/GuardianStorage");
-const BaseModule = require("../build/TestOnlyOwnerModule");
-const ERC20 = require("../build/TestERC20");
-const NonCompliantERC20 = require("../build/NonCompliantERC20");
+const Registry = artifacts.require("ModuleRegistry");
+const GuardianStorage = artifacts.require("GuardianStorage");
+const BaseModule = artifacts.require("TestOnlyOwnerModule");
+const ERC20 = artifacts.require("TestERC20");
+const NonCompliantERC20 = artifacts.require("NonCompliantERC20");
 
 const TestManager = require("../utils/test-manager");
 

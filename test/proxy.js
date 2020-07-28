@@ -1,12 +1,12 @@
-/* global accounts */
+/* global artifacts */
 const ethers = require("ethers");
 
 const TestManager = require("../utils/test-manager");
 
-const Proxy = require("../build/Proxy");
-const BaseWallet = require("../build/BaseWallet");
-const Module = require("../build/TestOnlyOwnerModule");
-const Registry = require("../build/ModuleRegistry");
+const Proxy = artifacts.require("Proxy");
+const BaseWallet = artifacts.require("BaseWallet");
+const Module = artifacts.require("TestOnlyOwnerModule");
+const Registry = artifacts.require("ModuleRegistry");
 
 describe("Proxy", function () {
   this.timeout(10000);

@@ -1,15 +1,16 @@
+/* global artifacts */
+
 const ethers = require("ethers");
-const {
-  deployMaker, deployUniswap, WAD, ETH_PER_DAI, ETH_PER_MKR,
-} = require("../utils/defi-deployer");
+const { deployMaker, deployUniswap, WAD, ETH_PER_DAI, ETH_PER_MKR } = require("../utils/defi-deployer");
 const TestManager = require("../utils/test-manager");
-const Registry = require("../build/ModuleRegistry");
-const MakerV2Manager = require("../build/MakerV2Manager");
-const Proxy = require("../build/Proxy");
-const BaseWallet = require("../build/BaseWallet");
-const GuardianStorage = require("../build/GuardianStorage");
-const MakerRegistry = require("../build/MakerRegistry");
-const RelayerModule = require("../build/RelayerModule");
+
+const Registry = artifacts.require("ModuleRegistry");
+const MakerV2Manager = artifacts.require("MakerV2Manager");
+const Proxy = artifacts.require("Proxy");
+const BaseWallet = artifacts.require("BaseWallet");
+const GuardianStorage = artifacts.require("GuardianStorage");
+const MakerRegistry = artifacts.require("MakerRegistry");
+const RelayerModule = artifacts.require("RelayerModule");
 
 const DAI_SENT = WAD.div(100000000);
 

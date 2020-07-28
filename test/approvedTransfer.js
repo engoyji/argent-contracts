@@ -1,18 +1,18 @@
-/* global accounts */
+/* global artifacts */
 const ethers = require("ethers");
 
-const Proxy = require("../build/Proxy");
-const BaseWallet = require("../build/BaseWallet");
-const RelayerModule = require("../build/RelayerModule");
-const Registry = require("../build/ModuleRegistry");
-const GuardianStorage = require("../build/GuardianStorage");
-const LimitStorage = require("../build/LimitStorage");
-const GuardianManager = require("../build/GuardianManager");
-const ApprovedTransfer = require("../build/ApprovedTransfer");
-const ERC20 = require("../build/TestERC20");
-const WETH = require("../build/WETH9");
-const TestContract = require("../build/TestContract");
-const TestLimitModule = require("../build/TestLimitModule");
+const Proxy = artifacts.require("Proxy");
+const BaseWallet = artifacts.require("BaseWallet");
+const RelayerModule = artifacts.require("RelayerModule");
+const Registry = artifacts.require("ModuleRegistry");
+const GuardianStorage = artifacts.require("GuardianStorage");
+const LimitStorage = artifacts.require("LimitStorage");
+const GuardianManager = artifacts.require("GuardianManager");
+const ApprovedTransfer = artifacts.require("ApprovedTransfer");
+const ERC20 = artifacts.require("TestERC20");
+const WETH = artifacts.require("WETH9");
+const TestContract = artifacts.require("TestContract");
+const TestLimitModule = artifacts.require("TestLimitModule");
 
 const TestManager = require("../utils/test-manager");
 const { sortWalletByAddress, parseRelayReceipt, ETH_TOKEN } = require("../utils/utilities.js");

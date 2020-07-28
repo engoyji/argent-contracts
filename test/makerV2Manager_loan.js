@@ -1,3 +1,5 @@
+/* global artifacts */
+
 const ethers = require("ethers");
 const { bigNumToBytes32, ETH_TOKEN, parseLogs } = require("../utils/utilities.js");
 const {
@@ -8,22 +10,23 @@ const { parseEther, formatBytes32String } = ethers.utils;
 const { HashZero, AddressZero } = ethers.constants;
 
 const TestManager = require("../utils/test-manager");
-const GemJoin = require("../build/GemJoin");
-const Registry = require("../build/ModuleRegistry");
+
+const GemJoin = artifacts.require("GemJoin");
+const Registry = artifacts.require("ModuleRegistry");
 const MakerV1Manager = require("../build-legacy/v1.6.0/MakerManager");
-const MakerV2Manager = require("../build/MakerV2Manager");
-const UpgradedMakerV2Manager = require("../build/TestUpgradedMakerV2Manager");
-const MakerRegistry = require("../build/MakerRegistry");
-const Proxy = require("../build/Proxy");
-const BaseWallet = require("../build/BaseWallet");
-const FakeWallet = require("../build/FakeWallet");
-const GuardianStorage = require("../build/GuardianStorage");
-const TransferStorage = require("../build/TransferStorage");
-const LimitStorage = require("../build/LimitStorage");
-const TokenPriceStorage = require("../build/TokenPriceStorage");
-const TransferManager = require("../build/TransferManager");
-const BadModule = require("../build/TestModule");
-const RelayerModule = require("../build/RelayerModule");
+const MakerV2Manager = artifacts.require("MakerV2Manager");
+const UpgradedMakerV2Manager = artifacts.require("TestUpgradedMakerV2Manager");
+const MakerRegistry = artifacts.require("MakerRegistry");
+const Proxy = artifacts.require("Proxy");
+const BaseWallet = artifacts.require("BaseWallet");
+const FakeWallet = artifacts.require("FakeWallet");
+const GuardianStorage = artifacts.require("GuardianStorage");
+const TransferStorage = artifacts.require("TransferStorage");
+const LimitStorage = artifacts.require("LimitStorage");
+const TokenPriceStorage = artifacts.require("TokenPriceStorage");
+const TransferManager = artifacts.require("TransferManager");
+const BadModule = artifacts.require("TestModule");
+const RelayerModule = artifacts.require("RelayerModule");
 
 /* global accounts */
 describe("MakerV2 Vaults", function () {

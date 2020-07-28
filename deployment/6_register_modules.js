@@ -1,5 +1,7 @@
-const ModuleRegistry = require("../build/ModuleRegistry");
-const MultiSig = require("../build/MultiSigWallet");
+/* global artifacts */
+
+const ModuleRegistry = artifacts.require("ModuleRegistry");
+const MultiSig = artifacts.require("MultiSigWallet");
 
 const GuardianManager = require("../build-legacy/v1.6.0/GuardianManager");
 const TokenExchanger = require("../build-legacy/v1.6.0/TokenExchanger");

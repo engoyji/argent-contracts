@@ -1,29 +1,29 @@
-/* global accounts, utils */
+/* global artifacts */
 const ethers = require("ethers");
 const { parseEther } = require("ethers").utils;
 
-const GuardianStorage = require("../build/GuardianStorage");
-const Registry = require("../build/ModuleRegistry");
+const GuardianStorage = artifacts.require("GuardianStorage");
+const Registry = artifacts.require("ModuleRegistry");
 
-const Proxy = require("../build/Proxy");
-const BaseWallet = require("../build/BaseWallet");
-const RelayerModule = require("../build/RelayerModule");
-const CompoundManager = require("../build/CompoundManager");
+const Proxy = artifacts.require("Proxy");
+const BaseWallet = artifacts.require("BaseWallet");
+const RelayerModule = artifacts.require("RelayerModule");
+const CompoundManager = artifacts.require("CompoundManager");
 
 // Compound
-const Unitroller = require("../build/Unitroller");
-const PriceOracle = require("../build/SimplePriceOracle");
-const PriceOracleProxy = require("../build/PriceOracleProxy");
-const Comptroller = require("../build/Comptroller");
-const InterestModel = require("../build/WhitePaperInterestRateModel");
-const CEther = require("../build/CEther");
-const CErc20 = require("../build/CErc20");
-const CompoundRegistry = require("../build/CompoundRegistry");
+const Unitroller = artifacts.require("Unitroller");
+const PriceOracle = artifacts.require("SimplePriceOracle");
+const PriceOracleProxy = artifacts.require("PriceOracleProxy");
+const Comptroller = artifacts.require("Comptroller");
+const InterestModel = artifacts.require("WhitePaperInterestRateModel");
+const CEther = artifacts.require("CEther");
+const CErc20 = artifacts.require("CErc20");
+const CompoundRegistry = artifacts.require("CompoundRegistry");
 
 const WAD = ethers.BigNumber.from("1000000000000000000"); // 10**18
 const ETH_EXCHANGE_RATE = ethers.BigNumber.from("200000000000000000000000000");
 
-const ERC20 = require("../build/TestERC20");
+const ERC20 = artifacts.require("TestERC20");
 
 const { ETH_TOKEN } = require("../utils/utilities.js");
 const TestManager = require("../utils/test-manager");

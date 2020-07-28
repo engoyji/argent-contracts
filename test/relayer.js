@@ -1,24 +1,24 @@
-/* global accounts */
+/* global artifacts */
 const ethers = require("ethers");
 const BN = require("bn.js");
 const { formatBytes32String } = require("ethers").utils;
 const { parseRelayReceipt, hasEvent } = require("../utils/utilities.js");
 
-const Proxy = require("../build/Proxy");
-const BaseWallet = require("../build/BaseWallet");
-const BadModule = require("../build/BadModule");
-const RelayerModule = require("../build/RelayerModule");
-const TestModule = require("../build/TestModule");
-const TestLimitModule = require("../build/TestLimitModule");
-const TestOnlyOwnerModule = require("../build/TestOnlyOwnerModule");
-const Registry = require("../build/ModuleRegistry");
-const GuardianManager = require("../build/GuardianManager");
-const GuardianStorage = require("../build/GuardianStorage");
-const LimitStorage = require("../build/LimitStorage");
-const TokenPriceStorage = require("../build/TokenPriceStorage");
-const ApprovedTransfer = require("../build/ApprovedTransfer");
-const RecoveryManager = require("../build/RecoveryManager"); // non-owner only module
-const ERC20 = require("../build/TestERC20");
+const Proxy = artifacts.require("Proxy");
+const BaseWallet = artifacts.require("BaseWallet");
+const BadModule = artifacts.require("BadModule");
+const RelayerModule = artifacts.require("RelayerModule");
+const TestModule = artifacts.require("TestModule");
+const TestLimitModule = artifacts.require("TestLimitModule");
+const TestOnlyOwnerModule = artifacts.require("TestOnlyOwnerModule");
+const Registry = artifacts.require("ModuleRegistry");
+const GuardianManager = artifacts.require("GuardianManager");
+const GuardianStorage = artifacts.require("GuardianStorage");
+const LimitStorage = artifacts.require("LimitStorage");
+const TokenPriceStorage = artifacts.require("TokenPriceStorage");
+const ApprovedTransfer = artifacts.require("ApprovedTransfer");
+const RecoveryManager = artifacts.require("RecoveryManager"); // non-owner only module
+const ERC20 = artifacts.require("TestERC20");
 
 const TestManager = require("../utils/test-manager");
 const { ETH_TOKEN } = require("../utils/utilities.js");

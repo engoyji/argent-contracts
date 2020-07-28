@@ -1,13 +1,13 @@
-/* global accounts */
+/* global artifacts */
 const ethers = require("ethers");
-const Proxy = require("../build/Proxy");
-const BaseWallet = require("../build/BaseWallet");
-const OldWalletV16 = require("../build-legacy/v1.6.0/BaseWallet");
-const OldWalletV13 = require("../build-legacy/v1.3.0/BaseWallet");
-const TestModule = require("../build/TestModule");
-const Registry = require("../build/ModuleRegistry");
-const SimpleUpgrader = require("../build/SimpleUpgrader");
-const GuardianStorage = require("../build/GuardianStorage");
+const Proxy = artifacts.require("Proxy");
+const BaseWallet = artifacts.require("BaseWallet");
+const OldWalletV16 = artifacts.require("../build-legacy/v1.6.0/BaseWallet");
+const OldWalletV13 = artifacts.require("../build-legacy/v1.3.0/BaseWallet");
+const TestModule = artifacts.require("TestModule");
+const Registry = artifacts.require("ModuleRegistry");
+const SimpleUpgrader = artifacts.require("SimpleUpgrader");
+const GuardianStorage = artifacts.require("GuardianStorage");
 
 const TestManager = require("../utils/test-manager");
 

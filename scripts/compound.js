@@ -1,5 +1,5 @@
-const CompoundRegistry = require("../build/CompoundRegistry");
-const MultiSig = require("../build/MultiSigWallet");
+const CompoundRegistry = artifacts.require("CompoundRegistry");
+const MultiSig = artifacts.require("MultiSigWallet");
 
 const DeployManager = require("../utils/deploy-manager.js");
 const MultisigExecutor = require("../utils/multisigexecutor.js");

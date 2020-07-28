@@ -1,9 +1,11 @@
-const ModuleRegistry = require("../build/ModuleRegistry");
-const ENSManager = require("../build/ArgentENSManager");
-const ENSResolver = require("../build/ArgentENSResolver");
+/* global artifacts */
+
+const ModuleRegistry = artifacts.require("ModuleRegistry");
+const ENSManager = artifacts.require("ArgentENSManager");
+const ENSResolver = artifacts.require("ArgentENSResolver");
 const WalletFactory = require("../build-legacy/v1.6.0/WalletFactory");
 const TokenPriceProvider = require("../build-legacy/v1.6.0/TokenPriceProvider");
-const CompoundRegistry = require("../build/CompoundRegistry");
+const CompoundRegistry = artifacts.require("CompoundRegistry");
 
 const DeployManager = require("../utils/deploy-manager.js");
 
