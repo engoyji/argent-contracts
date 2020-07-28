@@ -22,9 +22,7 @@ const TestManager = require("../utils/test-manager");
 
 const IS_ONLY_OWNER_MODULE = keccak256(toUtf8Bytes("isOnlyOwnerModule()")).slice(0, 10);
 
-contract("SimpleUpgrader", function (accounts) {
-  this.timeout(10000);
-
+contract("SimpleUpgrader", (accounts) => {
   const manager = new TestManager();
 
   const owner = accounts[1].signer;

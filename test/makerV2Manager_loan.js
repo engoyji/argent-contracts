@@ -29,9 +29,7 @@ const TransferManager = artifacts.require("TransferManager");
 const BadModule = artifacts.require("TestModule");
 const RelayerModule = artifacts.require("RelayerModule");
 
-contract("MakerV2Loan", function (accounts) {
-  this.timeout(100000);
-
+contract("MakerV2Loan", (accounts) => {
   const manager = new TestManager();
   const { deployer } = manager;
 

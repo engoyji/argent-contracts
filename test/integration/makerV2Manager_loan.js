@@ -36,9 +36,7 @@ const { RAY } = require("../../utils/defi-deployer");
 
 const DEFAULT_NETWORK = "kovan-fork"; // also works on kovan (faster, but uses real KETH)
 
-describe("Test MakerV2 Vaults", function () {
-  this.timeout(1000000);
-
+describe("Test MakerV2 Vaults", () => {
   if (!process.argv.join(" ").includes(__filename.slice(__dirname.length + 1))) {
     // We do not want to run this file as part of the complete test suite.
     // This is because this test file can currently only be run on kovan or kovan-fork

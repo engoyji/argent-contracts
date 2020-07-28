@@ -23,9 +23,7 @@ const DSToken = artifacts.require("DSToken");
 const DEFAULT_NETWORK = "kovan"; // a bug in kovan-fork makes some tests fail => use kovan
 const SENT_AMOUNT = parseEther("0.00000001");
 
-describe("Test MakerV2 DSR", function () {
-  this.timeout(1000000);
-
+describe("Test MakerV2 DSR", () => {
   if (!process.argv.join(" ").includes(__filename.slice(__dirname.length + 1))) {
     // We do not want to run this file as part of the complete test suite.
     // This is because this test file can only be run on kovan or kovan-fork

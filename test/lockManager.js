@@ -12,9 +12,7 @@ const RecoveryManager = artifacts.require("RecoveryManager");
 
 const TestManager = require("../utils/test-manager");
 
-contract("LockManager", function (accounts) {
-  this.timeout(10000);
-
+contract("LockManager", (accounts) => {
   const manager = new TestManager();
 
   const owner = accounts[1].signer;
