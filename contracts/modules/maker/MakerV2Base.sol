@@ -50,7 +50,6 @@ abstract contract MakerV2Base is DSMath, OnlyOwnerModule {
         ScdMcdMigrationLike _scdMcdMigration
     )
         BaseModule(_registry, _guardianStorage, NAME)
-        public
     {
         scdMcdMigration = address(_scdMcdMigration);
         daiJoin = _scdMcdMigration.daiJoin();
