@@ -7,7 +7,7 @@ contract BadModule is BaseModule {
     bytes32 constant NAME = "BadModule";
 
     constructor(IModuleRegistry _registry, IGuardianStorage _guardianStorage)
-    BaseModule(_registry, _guardianStorage, NAME) public
+    BaseModule(_registry, _guardianStorage, NAME)
     {
     }
 

@@ -17,7 +17,7 @@ contract TestModule is BaseModule {
 
     TestDapp public dapp;
 
-    constructor(IModuleRegistry _registry, IGuardianStorage _guardianStorage, bool _boolVal, uint _uintVal) BaseModule(_registry, _guardianStorage, NAME) public {
+    constructor(IModuleRegistry _registry, IGuardianStorage _guardianStorage, bool _boolVal, uint _uintVal) BaseModule(_registry, _guardianStorage, NAME) {
         boolVal = _boolVal;
         uintVal = _uintVal;
         dapp = new TestDapp();

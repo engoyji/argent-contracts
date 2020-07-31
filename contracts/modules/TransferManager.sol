@@ -91,7 +91,6 @@ contract TransferManager is OnlyOwnerModule, BaseTransfer {
     )
         BaseModule(_registry, _guardianStorage, NAME)
         BaseTransfer(_wethToken)
-        public
     {
         transferStorage = _transferStorage;
         limitStorage = _limitStorage;

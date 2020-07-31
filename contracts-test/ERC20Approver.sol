@@ -7,7 +7,7 @@ contract ERC20Approver is OnlyOwnerModule {
 
     bytes32 constant NAME = "ERC20Approver";
 
-    constructor(IModuleRegistry _registry) BaseModule(_registry, IGuardianStorage(0), NAME) public {}
+    constructor(IModuleRegistry _registry) BaseModule(_registry, IGuardianStorage(0), NAME) {}
 
     // used by NftTransfer's Tests
     function approveERC20(address _wallet, address _erc20Contract, address _spender, uint256 _amount)

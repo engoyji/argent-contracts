@@ -45,7 +45,6 @@ contract NftTransfer is OnlyOwnerModule {
         address _ckAddress
     )
         BaseModule(_registry, _guardianStorage, NAME)
-        public
     {
         ckAddress = _ckAddress;
     }

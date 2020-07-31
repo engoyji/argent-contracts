@@ -69,7 +69,6 @@ contract RelayerModule is BaseModule {
         ITokenPriceStorage _tokenPriceStorage
     )
         BaseModule(_registry, _guardianStorage, NAME)
-        public
     {
         limitStorage = _limitStorage;
         tokenPriceStorage = _tokenPriceStorage;

@@ -62,7 +62,6 @@ contract TokenExchanger is OnlyOwnerModule {
         address[] memory _authorisedExchanges
     )
         BaseModule(_registry, _guardianStorage, NAME)
-        public
     {
         paraswapSwapper = _paraswap;
         paraswapProxy = IAugustusSwapper(_paraswap).getTokenTransferProxy();

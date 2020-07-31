@@ -51,7 +51,7 @@ contract WalletFactory is Owned, Managed {
     /**
      * @notice Default constructor.
      */
-    constructor(address _moduleRegistry, address _walletImplementation, address _ensManager, address _guardianStorage) public {
+    constructor(address _moduleRegistry, address _walletImplementation, address _ensManager, address _guardianStorage) {
         require(_moduleRegistry != address(0), "WF: ModuleRegistry address not defined");
         require(_walletImplementation != address(0), "WF: WalletImplementation address not defined");
         require(_ensManager != address(0), "WF: ENSManager address not defined");

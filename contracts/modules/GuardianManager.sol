@@ -67,7 +67,6 @@ contract GuardianManager is BaseModule {
         uint256 _securityWindow
     )
         BaseModule(_registry, _guardianStorage, NAME)
-        public
     {
         securityPeriod = _securityPeriod;
         securityWindow = _securityWindow;

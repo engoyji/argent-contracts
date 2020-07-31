@@ -76,7 +76,6 @@ contract CompoundManager is OnlyOwnerModule {
         ICompoundRegistry _compoundRegistry
     )
         BaseModule(_registry, _guardianStorage, NAME)
-        public
     {
         comptroller = _comptroller;
         compoundRegistry = _compoundRegistry;

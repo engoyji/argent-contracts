@@ -24,7 +24,6 @@ contract TestLimitModule is BaseModule {
         ILimitStorage _limitStorage
     )
         BaseModule(_registry, _guardianStorage, NAME)
-        public
     {
         limitStorage = _limitStorage;
     }

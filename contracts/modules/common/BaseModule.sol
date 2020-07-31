@@ -84,7 +84,7 @@ contract BaseModule is IModule {
         _;
     }
 
-    constructor(IModuleRegistry _registry, IGuardianStorage _guardianStorage, bytes32 _name) public {
+    constructor(IModuleRegistry _registry, IGuardianStorage _guardianStorage, bytes32 _name) {
         registry = _registry;
         guardianStorage = _guardianStorage;
         emit ModuleCreated(_name);

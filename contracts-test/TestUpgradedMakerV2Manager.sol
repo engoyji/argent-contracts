@@ -32,7 +32,6 @@ contract TestUpgradedMakerV2Manager is MakerV2Manager {
             _makerRegistry,
             _uniswapFactory
         )
-        public
 
     {
         previousMakerV2Manager = _previousMakerV2Manager;

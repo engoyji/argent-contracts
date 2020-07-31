@@ -42,7 +42,6 @@ contract ApprovedTransfer is BaseTransfer {
     )
         BaseModule(_registry, _guardianStorage, NAME)
         BaseTransfer(_wethToken)
-        public
     {
         limitStorage = _limitStorage;
     }

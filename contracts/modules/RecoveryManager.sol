@@ -85,7 +85,6 @@ contract RecoveryManager is BaseModule {
         uint256 _lockPeriod
     )
         BaseModule(_registry, _guardianStorage, NAME)
-        public
     {
         // For the wallet to be secure we must have recoveryPeriod >= securityPeriod + securityWindow
         // where securityPeriod and securityWindow are the security parameters of adding/removing guardians

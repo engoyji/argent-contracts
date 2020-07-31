@@ -67,7 +67,7 @@ contract LockManager is BaseModule {
         IGuardianStorage _guardianStorage,
         uint256 _lockPeriod
     )
-        BaseModule(_registry, _guardianStorage, NAME) public {
+        BaseModule(_registry, _guardianStorage, NAME) {
         lockPeriod = _lockPeriod;
     }
 
