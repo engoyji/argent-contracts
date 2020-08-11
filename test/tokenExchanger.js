@@ -25,6 +25,7 @@ const ModuleRegistry = artifacts.require("ModuleRegistry");
 const Proxy = artifacts.require("Proxy");
 const BaseWallet = artifacts.require("BaseWallet");
 const OldWallet = require("../build-legacy/v1.3.0/BaseWallet");
+
 const GuardianStorage = artifacts.require("GuardianStorage");
 const TokenExchanger = artifacts.require("TokenExchanger");
 const RelayerModule = artifacts.require("RelayerModule");

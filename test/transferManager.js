@@ -19,6 +19,7 @@ const RelayerModule = artifacts.require("RelayerModule");
 const TransferModule = artifacts.require("TransferManager");
 const LegacyTransferManager = require("../build-legacy/v1.6.0/TransferManager");
 const LegacyTokenPriceProvider = require("../build-legacy/v1.6.0/TokenPriceProvider");
+
 const ERC20 = artifacts.require("TestERC20");
 const WETH = artifacts.require("WETH9");
 const TestContract = artifacts.require("TestContract");

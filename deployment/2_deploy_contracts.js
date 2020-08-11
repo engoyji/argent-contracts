@@ -9,6 +9,7 @@ const ENSManager = artifacts.require("ArgentENSManager");
 const ENSResolver = artifacts.require("ArgentENSResolver");
 const WalletFactory = require("../build-legacy/v1.6.0/WalletFactory");
 const TokenPriceProvider = require("../build-legacy/v1.6.0/TokenPriceProvider");
+
 const MakerRegistry = artifacts.require("MakerRegistry");
 const ScdMcdMigration = artifacts.require("ScdMcdMigration");
 

@@ -15,11 +15,13 @@ const MultisigExecutor = require("../../utils/multisigexecutor.js");
 const MultiSig = artifacts.require("MultiSigWallet");
 const UniswapFactory = require("../../lib/uniswap/UniswapFactory");
 const UniswapExchange = require("../../lib/uniswap/UniswapExchange");
+
 const Join = artifacts.require("JoinLike");
 const Vat = artifacts.require("VatLike");
 const FaucetUser = artifacts.require("FaucetUser");
 const CdpManager = artifacts.require("TestCdpManager");
 const MakerV1Manager = require("../../build-legacy/v1.6.0/MakerManager");
+
 const MakerV2Manager = artifacts.require("MakerV2Manager");
 const UpgradedMakerV2Manager = artifacts.require("TestUpgradedMakerV2Manager");
 const TransferManager = artifacts.require("TransferManager");

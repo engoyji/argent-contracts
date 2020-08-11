@@ -1,5 +1,3 @@
-/* global artifacts */
-
 const childProcess = require("child_process");
 
 const GuardianStorage = require("../build-legacy/v1.6.0/GuardianStorage");
