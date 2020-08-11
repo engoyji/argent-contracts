@@ -137,7 +137,7 @@ contract("MakerV2Loan", (accounts) => {
         relayerModule.contractAddress,
       ]);
     walletAddress = wallet.contractAddress;
-    await infrastructure.sendTransaction({ to: walletAddress, value: parseEther("2.0") });
+    await wallet.send(parseEther("2.0"));
   });
 
   async function getTestAmounts(tokenAddress) {
@@ -415,7 +415,7 @@ contract("MakerV2Loan", (accounts) => {
       // move the borrowed DAI from the wallet to the owner
       await transferManager.from(owner).transferToken(walletAddress, dai.contractAddress, owner, daiAmount, HashZero, { gasLimit: 3000000 });
       // give some ETH to the wallet to be used for repayment
-      await owner.sendTransaction({ to: walletAddress, value: collateralAmount });
+      await wallet.send(collateralAmount);
     }
     await manager.increaseTime(3); // wait 3 seconds
     const beforeDAI = await dai.balanceOf(wallet.contractAddress);
@@ -475,7 +475,7 @@ contract("MakerV2Loan", (accounts) => {
     const { collateralAmount, daiAmount } = await getTestAmounts(ETH_TOKEN);
     const loanId = await testOpenLoan({ collateralAmount, daiAmount, relayed });
     // give some ETH to the wallet to be used for repayment
-    await owner.sendTransaction({ to: walletAddress, value: collateralAmount.mul(2) });
+    await wallet.send(collateralAmount.mul(2));
     if (!useDai) {
       // move the borrowed DAI from the wallet to the owner
       await transferManager.from(owner).transferToken(walletAddress, dai.contractAddress, owner, daiAmount, HashZero, { gasLimit: 3000000 });

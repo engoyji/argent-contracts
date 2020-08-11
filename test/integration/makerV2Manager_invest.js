@@ -78,7 +78,7 @@ describe("Test MakerV2 DSR", () => {
     if (daiBalance.lt(parseEther("1"))) {
       const uniswapFactory = await deployer.wrapDeployedContract(UniswapFactory, config.defi.uniswap.factory);
       const daiExchange = await deployer.wrapDeployedContract(UniswapExchange, await uniswapFactory.getExchange(daiToken.contractAddress));
-      await (await owner.sendTransaction({ to: daiExchange.contractAddress, value: parseEther("0.02"), gasLimit: 3000000 })).wait();
+      await (await daiExchange.send(parseEther("0.02"), {gasLimit: 3000000 })).wait();
     }
 
     const saiBalance = await saiToken.balanceOf(owner.address);

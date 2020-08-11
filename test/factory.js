@@ -424,7 +424,7 @@ contract("WalletFactory", (accounts) => {
       // we get the future address
       const futureAddr = await factory.getAddressForCounterfactualWallet(owner, modules, guardian, salt);
       // We send ETH to the address
-      await infrastructure.sendTransaction({ to: futureAddr, value: amount });
+      await futureAddr.send(amount);
       // we create the wallet
       const tx = await factory.from(infrastructure).createCounterfactualWallet(owner, modules, label, guardian, salt);
       const txReceipt = await factory.verboseWaitForTransaction(tx);

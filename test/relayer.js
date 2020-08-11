@@ -211,7 +211,7 @@ contract("RelayerModule", (accounts) => {
 
     async function provisionFunds(ethAmount, erc20Amount) {
       if (ethAmount) {
-        await infrastructure.sendTransaction({ to: wallet.contractAddress, value: ethAmount });
+        await wallet.send(ethAmount);
       }
       if (erc20Amount) {
         await erc20.transfer(wallet.contractAddress, erc20Amount);

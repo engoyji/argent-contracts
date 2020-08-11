@@ -122,7 +122,7 @@ describe("Test MakerV2 Vaults", () => {
       transferManager.contractAddress,
     ]));
     walletAddress = wallet.contractAddress;
-    await (await owner.sendTransaction({ to: walletAddress, value: parseEther("0.3") })).wait();
+    await (await walletAddress.send(parseEther("0.3"))).wait();
   });
 
   async function cleanup() {
@@ -366,7 +366,7 @@ describe("Test MakerV2 Vaults", () => {
           walletAddress, daiToken.contractAddress, owner, daiAmount, HashZero, { gasLimit: 3000000 },
         )).wait();
         // give some ETH to the wallet to be used for repayment
-        await (await owner.sendTransaction({ to: walletAddress, value: collateralAmount })).wait();
+        await (await wallet.send(collateralAmount)).wait();
       }
       await testManager.increaseTime(3); // wait 3 seconds
       const beforeDAI = await daiToken.balanceOf(wallet.contractAddress);
@@ -403,7 +403,7 @@ describe("Test MakerV2 Vaults", () => {
       const { collateralAmount, daiAmount } = await getTestAmounts(ETH_TOKEN);
       const loanId = await testOpenLoan({ collateralAmount, daiAmount, relayed });
       // give some ETH to the wallet to be used for repayment
-      await (await owner.sendTransaction({ to: walletAddress, value: collateralAmount.mul(2) })).wait();
+      await (await wallet.send(collateralAmount.mul(2))).wait();
       if (!useDai) {
         // move the borrowed DAI from the wallet to the owner
         await (await transferManager.transferToken(
